@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,10 +82,10 @@ class SbbApplicationTests {
 	}*/
 
 	// Answer
-	@Transactional
+	/*@Transactional
 	@Test
 	void testJpa() {
-		/*Optional<Question> oq = this.questionRepository.findById(6);
+		*//*Optional<Question> oq = this.questionRepository.findById(6);
 		assertTrue(oq.isPresent());
 		Question q = oq.get();
 
@@ -92,12 +93,12 @@ class SbbApplicationTests {
 		a.setContent("네 자동으로 생성됩니다.");
 		a.setQuestion(q);
 		a.setCreateDate(LocalDateTime.now());
-		this.answerRepository.save(a);*/
+		this.answerRepository.save(a);*//*
 
-		/*Optional<Answer> oa = this.answerRepository.findById(1);
+		*//*Optional<Answer> oa = this.answerRepository.findById(1);
 		assertTrue(oa.isPresent());
 		Answer a = oa.get();
-		assertEquals(6, a.getQuestion().getId());*/
+		assertEquals(6, a.getQuestion().getId());*//*
 
 		Optional<Question> oq = this.questionRepository.findById(6);
 		assertTrue(oq.isPresent());
@@ -107,6 +108,25 @@ class SbbApplicationTests {
 
 		assertEquals(1, answerList.size());
 		assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+
+	}*/
+
+
+	@Transactional
+	@Test
+	void testJpa() {
+		System.out.println("탄다");
+		Question q1 = new Question();
+		q1.setSubject("sbb가 무엇인가요?");
+		q1.setContent("sbb에 대해서 알고 싶습니다.");
+		q1.setCreateDate(LocalDateTime.now());
+		this.questionRepository.save(q1);  // 첫번째 질문 저장
+
+		Question q2 = new Question();
+		q2.setSubject("스프링부트 모델 질문입니다.");
+		q2.setContent("id는 자동으로 생성되나요?");
+		q2.setCreateDate(LocalDateTime.now());
+		this.questionRepository.save(q2);
 
 	}
 }
